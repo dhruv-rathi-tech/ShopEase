@@ -2,10 +2,6 @@
 A full-stack e-commerce web application built with Node.js, Express, MySQL, and vanilla HTML/CSS/JavaScript.
 ---
 
-## 🖥️ Live Demo
-> Deploy link here (add after deploying on Railway.app).
----
-
 ## ✨ Features
 
 ### Customer
@@ -182,20 +178,8 @@ OTP         : 1234
 
 ---
 
-## 🚀 Deployment
-This project can be deployed for free using:
-- **Backend + Database** → [Railway.app](https://railway.app)
-- **Frontend** → [Netlify](https://netlify.com) or [Vercel](https://vercel.com)
-
----
-
 ## 👤 Author
 
 **Dhruv Rathi**
 - GitHub: [@dhruv-rathi-tech](https://github.com/dhruv-rathi-tech)
-- LinkedIn: [your-linkedin](https://www.linkedin.com/in/dhruv-rathi-31dr)
-
----
-
-## 📄 License
-This project is open source and available under the [MIT License](LICENSE).
+- LinkedIn: [dhruv-rathi-31dr](https://www.linkedin.com/in/dhruv-rathi-31dr)
