@@ -3,7 +3,7 @@
 // Stock is only reduced AFTER payment is verified
 
 const express   = require('express');
-const db        = require('../db');
+const db        = require('../config/db');
 const Razorpay  = require('razorpay');
 const { isLoggedIn, isAdmin } = require('../middleware/auth');
 

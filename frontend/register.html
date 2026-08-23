@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login — ShopEase</title>
+  <title>Register — ShopEase</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,7 +28,6 @@
       grid-template-columns: 1fr 1fr;
     }
 
-    /* Left panel */
     .left {
       background: linear-gradient(135deg, #1a1200 0%, #2a1f00 50%, #1a1200 100%);
       display: flex;
@@ -47,15 +46,6 @@
       border-radius: 50%;
       background: radial-gradient(circle, rgba(232,201,126,0.15) 0%, transparent 70%);
       top: -100px; left: -100px;
-    }
-
-    .left::after {
-      content: '';
-      position: absolute;
-      width: 300px; height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,201,126,0.1) 0%, transparent 70%);
-      bottom: -50px; right: -50px;
     }
 
     .brand {
@@ -84,13 +74,11 @@
       z-index: 1;
     }
 
-    /* Right panel */
     .right {
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 60px 80px;
-      background: var(--bg);
     }
 
     .form-box {
@@ -110,14 +98,9 @@
       margin-bottom: 40px;
     }
 
-    .subtitle a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    .subtitle a { color: var(--accent); text-decoration: none; }
 
-    .field {
-      margin-bottom: 20px;
-    }
+    .field { margin-bottom: 20px; }
 
     label {
       display: block;
@@ -142,9 +125,7 @@
       transition: border-color 0.2s;
     }
 
-    input:focus {
-      border-color: var(--accent);
-    }
+    input:focus { border-color: var(--accent); }
 
     .btn {
       width: 100%;
@@ -186,60 +167,70 @@
   <div class="left">
     <div class="brand">ShopEase</div>
     <div class="deco-line"></div>
-    <p class="tagline">Your premium destination for electronics, fashion, and everything in between.</p>
+    <p class="tagline">Join thousands of shoppers who trust ShopEase for premium products at great prices.</p>
   </div>
 
   <div class="right">
     <div class="form-box">
-      <h2>Welcome back</h2>
-      <p class="subtitle">Don't have an account? <a href="register.html">Sign up</a></p>
+      <h2>Create account</h2>
+      <p class="subtitle">Already have one? <a href="login.html">Sign in</a></p>
 
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="Dhruv" />
+      </div>
       <div class="field">
         <label>Email</label>
         <input type="email" id="email" placeholder="you@example.com" />
       </div>
       <div class="field">
         <label>Password</label>
-        <input type="password" id="password" placeholder="••••••••" />
+        <input type="password" id="password" placeholder="Min. 6 characters" />
       </div>
 
-      <button class="btn" onclick="login()">Sign In</button>
+      <button class="btn" onclick="register()">Create Account</button>
       <div class="msg" id="msg"></div>
     </div>
   </div>
 
+  <script src="js/config.js"></script>
   <script>
-    const API = 'http://localhost:3000';
-
-    async function login() {
+    async function register() {
+      const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
       const msg = document.getElementById('msg');
       msg.className = 'msg';
 
-      if (!email || !password) {
+      if (!name || !email || !password) {
         msg.className = 'msg error';
         msg.textContent = 'Please fill in all fields.';
         return;
       }
 
+      if (password.length < 6) {
+        msg.className = 'msg error';
+        msg.textContent = 'Password must be at least 6 characters.';
+        return;
+      }
+
       try {
-        const res = await fetch(`${API}/auth/login`, {
+        const res = await fetch(`${API}/auth/register`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
+          body: JSON.stringify({ name, email, password })
         });
         const data = await res.json();
 
         if (!res.ok) {
           msg.className = 'msg error';
-          msg.textContent = data.error || 'Login failed.';
+          msg.textContent = data.error || 'Registration failed.';
           return;
         }
 
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        window.location.href = 'products.html';
+        msg.className = 'msg success';
+        msg.textContent = 'Account created! Redirecting to login...';
+        setTimeout(() => window.location.href = 'login.html', 1500);
 
       } catch (err) {
         msg.className = 'msg error';
@@ -248,7 +239,7 @@
     }
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Enter') login();
+      if (e.key === 'Enter') register();
     });
   </script>
 </body>

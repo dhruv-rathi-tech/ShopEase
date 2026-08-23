@@ -6,7 +6,7 @@
 
 const express = require('express');
 const crypto  = require('crypto'); // built into Node, no install needed
-const db      = require('../db');
+const db      = require('../config/db');
 const { isLoggedIn } = require('../middleware/auth');
 
 const router = express.Router();

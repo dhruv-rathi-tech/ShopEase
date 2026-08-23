@@ -2,7 +2,7 @@
 // All cart actions require being logged in
 
 const express = require('express');
-const db      = require('../db');
+const db      = require('../config/db');
 const { isLoggedIn } = require('../middleware/auth');
 
 const router = express.Router();
