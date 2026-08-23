@@ -25,28 +25,26 @@ app.use('/orders',     require('./routes/orders'));
 app.use('/payments',   require('./routes/payments'));
 
 // ── HEALTH CHECK ───────────────────────────────────────────
-app.get(['/api', '/api/health'], (req, res) => {
-  res.json({
-    status: 'ok',
-    message: '🛒 ShopEase API is running!',
-    timestamp: new Date().toISOString()
-  });
+app.get('/api', (req, res) => {
+  res.json({ status: 'ok', message: '🛒 ShopEase API is running!' });
+});
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', message: '🛒 ShopEase API is running!' });
 });
 
-// ── FRONTEND ROUTING FALLBACK ──────────────────────────────
-// For any non-API GET request, fallback to frontend
-app.get('*', (req, res, next) => {
-  // If requesting an API route that wasn't found, skip to 404
-  if (req.path.startsWith('/auth') || 
-      req.path.startsWith('/categories') || 
-      req.path.startsWith('/products') || 
-      req.path.startsWith('/cart') || 
-      req.path.startsWith('/orders') || 
-      req.path.startsWith('/payments') ||
-      req.path.startsWith('/api')) {
-    return next();
+// ── FRONTEND ROUTING FALLBACK (Express 5 compatible) ───────
+app.use((req, res, next) => {
+  if (req.method === 'GET' && 
+      !req.path.startsWith('/auth') && 
+      !req.path.startsWith('/categories') && 
+      !req.path.startsWith('/products') && 
+      !req.path.startsWith('/cart') && 
+      !req.path.startsWith('/orders') && 
+      !req.path.startsWith('/payments') &&
+      !req.path.startsWith('/api')) {
+    return res.sendFile(path.join(frontendPath, 'index.html'));
   }
-  res.sendFile(path.join(frontendPath, 'index.html'));
+  next();
 });
 
 // ── 404 API HANDLER ────────────────────────────────────────
@@ -61,6 +59,6 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ ShopEase Server running at http://localhost:${PORT}`);
 });
