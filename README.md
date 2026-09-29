@@ -1,14 +1,14 @@
-# ShopEase 🛒 — Full-Stack E-Commerce Platform
+# ShopEase — Full-Stack E-Commerce Platform
 
 A production-ready, full-stack e-commerce web application built with **Node.js**, **Express**, **MySQL**, and vanilla **HTML5 / Modern CSS / JavaScript**.
 
-🌐 **Live Demo:** [https://shopease-web.up.railway.app/](https://shopease-web.up.railway.app/)
+**Live Demo:** [https://shopease-web.up.railway.app/](https://shopease-web.up.railway.app/)
 
 ---
 
-## ✨ Features
+## Features
 
-### 🛍️ Customer Experience
+### Customer Experience
 - **User Authentication**: Secure signup and login with JWT & bcrypt password hashing.
 - **Product Catalog**: Dynamic product feed with live search and category/subcategory filtering.
 - **Cart Management**: Add to cart, real-time quantity adjustment, subtotal/total calculations, and item removal.
@@ -16,14 +16,14 @@ A production-ready, full-stack e-commerce web application built with **Node.js**
 - **Online Payments**: Integrated with **Razorpay** popup checkout and backend cryptographic signature verification.
 - **Order Tracking & History**: View confirmed orders and item breakdowns with a 24-hour cancellation window (including automated inventory restock and refund initiation).
 
-### 🛡️ Admin Experience
+### Admin Experience
 - **Role-Based Access Control (RBAC)**: Admin-only route and API protection.
 - **Inventory Management**: Add new products to the catalog, edit product details, and delete items.
 - **Order Management**: View all store orders and update order statuses (pending, confirmed, shipped, delivered, cancelled).
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -36,7 +36,7 @@ A production-ready, full-stack e-commerce web application built with **Node.js**
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ShopEase/
@@ -74,7 +74,7 @@ ShopEase/
 
 ---
 
-## 🚀 Quick Start (Local Development)
+## Quick Start (Local Development)
 
 ### 1. Prerequisites
 - [Node.js](https://nodejs.org/) (v18 or higher)
@@ -84,7 +84,7 @@ ShopEase/
 ### 2. Installation
 ```bash
 # Clone the repository
-git clone https://github.com/dhruv-rathi-tech/ecommerce_web.git
+git clone https://github.com/dhruv-rathi-tech/ShopEase.git
 cd ShopEase
 
 # Install dependencies
@@ -119,7 +119,7 @@ Visit **`http://localhost:3000`** in your browser.
 
 ---
 
-## ☁️ Deployment Guide (Railway.app)
+## Deployment Guide (Railway.app)
 
 ### Step 1: Push to GitHub
 ```bash
@@ -130,18 +130,18 @@ git push origin main
 
 ### Step 2: Create Railway Project & MySQL
 1. Log in to [Railway.app](https://railway.app).
-2. Click **+ New Project** ➔ **Deploy from GitHub repo** ➔ Select your `ShopEase` repository.
-3. Click **+ New** inside your project ➔ **Database** ➔ **Add MySQL**.
+2. Click **+ New Project** -> **Deploy from GitHub repo** -> Select your `ShopEase` repository.
+3. Click **+ New** inside your project -> **Database** -> **Add MySQL**.
 
 ### Step 3: Seed the Database
-1. Click on the **MySQL** card in Railway ➔ Click **Connect** (top right) ➔ **Public Network** ➔ Click **Add Public Access**.
+1. Click on the **MySQL** card in Railway -> Click **Connect** (top right) -> **Public Network** -> Click **Add Public Access**.
 2. Copy the public connection string (`mysql://root:...`) and run in your terminal:
    ```bash
    npm run setup-db "<YOUR_RAILWAY_PUBLIC_MYSQL_URL>"
    ```
 
 ### Step 4: Configure Web Service Variables
-Click on your **Node.js Web Service** card ➔ Go to the **Variables** tab and add:
+Click on your **Node.js Web Service** card -> Go to the **Variables** tab and add:
 - `MYSQL_URL`: `<your-mysql-connection-url>`
 - `PORT`: `3000`
 - `JWT_SECRET`: `<your-jwt-secret-key>`
@@ -149,11 +149,11 @@ Click on your **Node.js Web Service** card ➔ Go to the **Variables** tab and a
 - `RAZORPAY_KEY_SECRET`: `<your-razorpay-secret-key>`
 
 ### Step 5: Generate Public Domain
-Under **Settings** ➔ **Networking**, click **Generate Domain** to get your public URL (e.g. `https://shopease-web.up.railway.app`).
+Under **Settings** -> **Networking**, click **Generate Domain** to get your public URL (e.g. `https://shopease-web.up.railway.app`).
 
 ---
 
-## 💳 Test Payment Card (Razorpay Sandbox)
+## Test Payment Card (Razorpay Sandbox)
 When completing a test purchase in the Razorpay popup:
 ```
 Card Number : 5267 3181 8797 5449
@@ -164,7 +164,7 @@ OTP         : 1234
 
 ---
 
-## 📡 API Reference
+## API Reference
 
 ### Authentication (`/auth`)
 - `POST /auth/register` — Create a new customer account
@@ -204,7 +204,7 @@ OTP         : 1234
 
 ---
 
-## 👤 Author
+## Author
 **Dhruv Rathi**
 - GitHub: [@dhruv-rathi-tech](https://github.com/dhruv-rathi-tech)
 - LinkedIn: [dhruv-rathi-31dr](https://www.linkedin.com/in/dhruv-rathi-31dr)
