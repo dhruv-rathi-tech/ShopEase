@@ -2,7 +2,7 @@
 
 A production-ready, full-stack e-commerce web application built with **Node.js**, **Express**, **MySQL**, and vanilla **HTML5 / Modern CSS / JavaScript**.
 
-**Live Demo:** [https://shopease-23fh.onrender.com/](https://shopease-23fh.onrender.com/)
+**Live Demo:** [https://shopease-shop.onrender.com/](https://shopease-shop.onrender.com/)
 
 ---
 
@@ -42,7 +42,7 @@ A production-ready, full-stack e-commerce web application built with **Node.js**
 ShopEase/
 ├── backend/
 │   ├── config/
-│   │   └── db.js              # MySQL connection pool (Local & Cloud/Railway SSL)
+│   │   └── db.js              # MySQL connection pool (Local & Cloud/TiDB SSL)
 │   ├── middleware/
 │   │   └── auth.js            # JWT auth & admin authorization middleware
 │   ├── routes/
@@ -67,7 +67,6 @@ ShopEase/
 │   └── orders.html            # Order history & admin order management
 ├── .env.example               # Environment variables template
 ├── .gitignore                 # Git ignore rules
-├── railway.json               # Railway deployment configuration
 ├── package.json               # Root orchestration package
 └── README.md
 ```
@@ -153,7 +152,7 @@ Under the **Environment Variables** section on Render, add:
 - `RAZORPAY_KEY_SECRET`: `<your-razorpay-secret-key>`
 
 ### Step 5: Access Your Live Application
-Render automatically provisions SSL and assigns your public URL (e.g. `https://shopease-23fh.onrender.com`).
+Render automatically provisions SSL and assigns your public URL (e.g. `https://shopease-shop.onrender.com`).
 
 ---
 
