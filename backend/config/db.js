@@ -10,8 +10,16 @@ const isCloudOrSSL = process.env.DB_SSL === 'true' ||
   Boolean(process.env.MYSQL_URL && !process.env.MYSQL_URL.includes('localhost')) ||
   Boolean(process.env.DATABASE_URL && !process.env.DATABASE_URL.includes('localhost'));
 
-const poolConfig = (process.env.DATABASE_URL || process.env.MYSQL_URL || process.env.MYSQL_PRIVATE_URL)
-  ? (process.env.DATABASE_URL || process.env.MYSQL_URL || process.env.MYSQL_PRIVATE_URL)
+const rawUri = process.env.DATABASE_URL || process.env.MYSQL_URL || process.env.MYSQL_PRIVATE_URL;
+
+const poolConfig = rawUri
+  ? {
+      uri: rawUri,
+      ssl: isCloudOrSSL ? { rejectUnauthorized: false } : undefined,
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0
+    }
   : {
       host:     process.env.DB_HOST || process.env.MYSQLHOST || 'localhost',
       user:     process.env.DB_USER || process.env.MYSQLUSER || 'root',
