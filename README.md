@@ -2,7 +2,7 @@
 
 A production-ready, full-stack e-commerce web application built with **Node.js**, **Express**, **MySQL**, and vanilla **HTML5 / Modern CSS / JavaScript**.
 
-**Live Demo:** [https://shopease-web.up.railway.app/](https://shopease-web.up.railway.app/)
+**Live Demo:** [https://shopease-23fh.onrender.com/](https://shopease-23fh.onrender.com/)
 
 ---
 
@@ -32,7 +32,7 @@ A production-ready, full-stack e-commerce web application built with **Node.js**
 | **Authentication** | JWT (JSON Web Tokens), bcrypt |
 | **Payment Gateway** | Razorpay (Test / Live modes) |
 | **Frontend** | Modern HTML5, Glassmorphic CSS3 Dark Mode, Vanilla JavaScript (ES6+) |
-| **Deployment** | Railway.app |
+| **Deployment** | Render.com & TiDB Cloud |
 
 ---
 
@@ -119,37 +119,41 @@ Visit **`http://localhost:3000`** in your browser.
 
 ---
 
-## Deployment Guide (Railway.app)
+## Deployment Guide (Render.com & TiDB Cloud)
 
 ### Step 1: Push to GitHub
 ```bash
 git add .
-git commit -m "Deploy to Railway"
+git commit -m "Deploy to Render"
 git push origin main
 ```
 
-### Step 2: Create Railway Project & MySQL
-1. Log in to [Railway.app](https://railway.app).
-2. Click **+ New Project** -> **Deploy from GitHub repo** -> Select your `ShopEase` repository.
-3. Click **+ New** inside your project -> **Database** -> **Add MySQL**.
-
-### Step 3: Seed the Database
-1. Click on the **MySQL** card in Railway -> Click **Connect** (top right) -> **Public Network** -> Click **Add Public Access**.
-2. Copy the public connection string (`mysql://root:...`) and run in your terminal:
+### Step 2: Database Setup (TiDB Cloud)
+1. Sign up for [TiDB Cloud](https://tidbcloud.com) and create a free Serverless MySQL cluster.
+2. In the cluster overview, click **Connect** to obtain the MySQL connection string (with SSL).
+3. Seed the database schema and sample data from your terminal:
    ```bash
-   npm run setup-db "<YOUR_RAILWAY_PUBLIC_MYSQL_URL>"
+   npm run setup-db "<YOUR_TIDB_CONNECTION_URL>"
    ```
 
-### Step 4: Configure Web Service Variables
-Click on your **Node.js Web Service** card -> Go to the **Variables** tab and add:
-- `MYSQL_URL`: `<your-mysql-connection-url>`
-- `PORT`: `3000`
+### Step 3: Deploy Web Service on Render
+1. Log in to [Render.com](https://render.com) and click **New +** -> **Web Service**.
+2. Connect your GitHub repository `dhruv-rathi-tech/ShopEase`.
+3. Configure the service settings:
+   - **Runtime**: Node
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+   - **Instance Type**: Free
+
+### Step 4: Configure Environment Variables
+Under the **Environment Variables** section on Render, add:
+- `DATABASE_URL`: `<your-tidb-mysql-connection-url>`
 - `JWT_SECRET`: `<your-jwt-secret-key>`
 - `RAZORPAY_KEY_ID`: `<your-razorpay-key-id>`
 - `RAZORPAY_KEY_SECRET`: `<your-razorpay-secret-key>`
 
-### Step 5: Generate Public Domain
-Under **Settings** -> **Networking**, click **Generate Domain** to get your public URL (e.g. `https://shopease-web.up.railway.app`).
+### Step 5: Access Your Live Application
+Render automatically provisions SSL and assigns your public URL (e.g. `https://shopease-23fh.onrender.com`).
 
 ---
 
